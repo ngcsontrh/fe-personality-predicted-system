@@ -4,6 +4,7 @@ import { questions, answers } from '../constants'
 const Questions = () => {
   const [answer, setAnswer] = useState([]);
   const [gender, setGender] = useState(null);
+  const [age, setAge] = useState(null);
 
   const handleAnswerChange = (questionIndex, answerValue) => {
     setAnswer(oldAns => {
@@ -26,15 +27,16 @@ const Questions = () => {
     const scoreN = Math.round(answerN.reduce((sum, answerEVal) => sum + answerEVal, 0) * 0.16);
     const scoreO = Math.round(answerO.reduce((sum, answerEVal) => sum + answerEVal, 0) * 0.16);
 
-    const score = {
+    const features = {
       Gender: gender,
+      Age: age,
       E: scoreE,
       A: scoreA,
       C: scoreC,
       N: scoreN,
       O: scoreO
     }
-    console.log(score);
+    console.log(features);
   }
 
   return (
@@ -45,6 +47,10 @@ const Questions = () => {
         <label htmlFor="male">Nam</label>
         <input onChange={(e) => {setGender(parseInt(e.target.value))}} type="radio" name='gender' id='female' value={0} />
         <label htmlFor="female">Nữ</label>
+      </div>
+      <div style={{display: 'flex', alignItems: 'center'}}>
+        <label htmlFor="age">Tuổi</label>
+        <input onChange={(e) => {setAge(parseInt(e.target.value))}} type="number" name="age" id='age' value={age}/>
       </div>
       <ol>
         {questions.map((question, questionIndex) => (
